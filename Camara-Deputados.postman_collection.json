@@ -1,0 +1,68 @@
+{
+	"info": {
+		"_postman_id": "caa32883-99fa-4bb0-9258-7647595fa85e",
+		"name": "Camara/Deputados",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23585763"
+	},
+	"item": [
+		{
+			"name": "https://dadosabertos.camara.leg.br/api/v2/deputados?ordem=ASC&ordenarPor=nome",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let jsonData = pm.response.json()\r",
+							"console.log(jsonData)\r",
+							"\r",
+							"var nome = jsonData.dados[10].nome\r",
+							"console.log(nome)\r",
+							"\r",
+							"pm.test('validar o nome retornado',()=>{\r",
+							"    pm.expect(nome).to.equal('Aguinaldo Ribeiro')\r",
+							"\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dadosabertos.camara.leg.br/api/v2/deputados?ordem=ASC&ordenarPor=nome",
+					"protocol": "https",
+					"host": [
+						"dadosabertos",
+						"camara",
+						"leg",
+						"br"
+					],
+					"path": [
+						"api",
+						"v2",
+						"deputados"
+					],
+					"query": [
+						{
+							"key": "ordem",
+							"value": "ASC"
+						},
+						{
+							"key": "ordenarPor",
+							"value": "nome"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
